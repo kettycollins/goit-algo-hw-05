@@ -13,20 +13,40 @@ def benchmark(func, text, pattern):
     return timeit.timeit(stmt=stmt, setup=setup_code, globals={'text': text, 'pattern': pattern}, number=10)
 
 if __name__ == '__main__':
-    text = read_file('Algorythms/homework/goit-algo-hw-05/task 3/article1.txt')
-    real_pattern = "some_real_pattern"
-    fake_pattern = "some_fake_pattern"
+    text1 = read_file('Algorythms/homework/goit-algo-hw-05/task 3/article1.txt')
+    text2 = read_file('Algorythms/homework/goit-algo-hw-05/task 3/article2.txt')
+    
+    real_pattern = "структура даних"
+    fake_pattern = "мамуля"
 
-    results = []
+    results1 = []
     for pattern in (real_pattern, fake_pattern):
-        time = benchmark(boyer_moore_search, text, pattern)
-        results.append((boyer_moore_search.__name__, pattern, time))
-        time = benchmark(kmp_search, text, pattern)
-        results.append((kmp_search.__name__, pattern, time))
-        time = benchmark(rabin_karp_search, text, pattern)
-        results.append((rabin_karp_search.__name__, pattern, time))
+        time = benchmark(boyer_moore_search, text1, pattern)
+        results1.append((boyer_moore_search.__name__, pattern, time))
+        time = benchmark(kmp_search, text1, pattern)
+        results1.append((kmp_search.__name__, pattern, time))
+        time = benchmark(rabin_karp_search, text1, pattern)
+        results1.append((rabin_karp_search.__name__, pattern, time))
+
+    results2 = []
+    for pattern in (real_pattern, fake_pattern):
+        time = benchmark(boyer_moore_search, text2, pattern)
+        results2.append((boyer_moore_search.__name__, pattern, time))
+        time = benchmark(kmp_search, text2, pattern)
+        results2.append((kmp_search.__name__, pattern, time))
+        time = benchmark(rabin_karp_search, text2, pattern)
+        results2.append((rabin_karp_search.__name__, pattern, time))
+
+    print("Результати для першої статті:")
     title = f"{'Алгоритм':<30} | {'Підрядок':<30} | {'Час виконання, сек'}"
     print(title)
     print("-" * len(title))
-    for result in results:
+    for result in results1:
+        print(f"{result[0]:<30} | {result[1]:<30} | {result[2]}")
+
+    print("\nРезультати для другої статті:")
+    title = f"{'Алгоритм':<30} | {'Підрядок':<30} | {'Час виконання, сек'}"
+    print(title)
+    print("-" * len(title))
+    for result in results2:
         print(f"{result[0]:<30} | {result[1]:<30} | {result[2]}")
