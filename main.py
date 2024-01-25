@@ -16,7 +16,7 @@ if __name__ == '__main__':
     text1 = read_file('Algorythms/homework/goit-algo-hw-05/task 3/article1.txt')
     text2 = read_file('Algorythms/homework/goit-algo-hw-05/task 3/article2.txt')
     
-    real_pattern = "структура даних"
+    real_pattern = "структури даних"
     fake_pattern = "мамуля"
 
     results1 = []
